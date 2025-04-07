@@ -1,0 +1,8 @@
+*
+!*/
+
+#Track gitignore
+!.gitignore
+
+#track src folder
+!src/
