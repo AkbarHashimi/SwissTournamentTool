@@ -74,6 +74,13 @@ Player::Web::Web()
 
 Player::Web::~Web()
 {
+
+	clearConnections();
+
+}
+
+void Player::Web::clearConnections()
+{
 	//check if empty
 
 	if (connections.head == nullptr)
@@ -108,10 +115,6 @@ Player::Web::~Web()
 		current = next;
 
 	}
-
-
-
-
 }
 
 void Player::Web::addConnection(Player* newPlayer)
@@ -150,3 +153,33 @@ void Player::Web::addConnection(Player* newPlayer)
 
 
 }
+
+void Player::Web::removeConnection(Player* removePlayer)
+{
+	//check for empty list
+
+	if (connections.head == nullptr)
+	{
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+
+		cout << "Web Connection is empty, nothing to delete" << endl;
+
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+
+
+		return;
+	}
+
+	//search for item to remove, if not found - do nothing
+
+
+
+
+
+	return;
+}
+
