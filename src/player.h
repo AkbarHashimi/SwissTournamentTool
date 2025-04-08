@@ -33,8 +33,6 @@ class Player
 	void unPair();
 	void addConnection(Player* addPlayer);
 	void removeConnection(Player* removePlayer);
-	void completeMatch();
-	void resetMatch();
 	void notifyPartner();
 	string getName();
 
