@@ -52,6 +52,8 @@ struct PairNode
 	string p1Name;
 	string p2Name;
 
+	bool complete;
+
 	PairNode* next;
 };
 
@@ -68,6 +70,7 @@ class PairList
 
 
 	void addPair(string player1Name, string player2Name);
+	void matchResult(string winnerName);
 	void clear();
 	void display();
 };
