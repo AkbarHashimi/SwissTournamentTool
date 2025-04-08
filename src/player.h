@@ -19,8 +19,8 @@ using std::endl;
 class Player
 {
 	private:
-	bool Paired;
-	string Pname;
+	bool paired;
+	string pName;
 	int points;
 	Web connectionList;
 
