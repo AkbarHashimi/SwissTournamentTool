@@ -36,6 +36,7 @@ class Player
 	void completeMatch();
 	void resetMatch();
 	void notifyPartner();
+	string getName();
 
 
 
