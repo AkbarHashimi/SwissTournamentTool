@@ -62,7 +62,7 @@ class Player
 
 		public:
 		Web();
-		void addConnection(Player* addPlayer);
+		void addConnection(Player* newPlayer);
 		void removeConnection(Player* removePlayer);
 		void notifyPartner();
 		bool findPair(Player* & foundPlayer);
