@@ -16,8 +16,30 @@ using std::string;
 using std::cout;
 using std::endl;
 
+#include "player.h"
+
 class Format
 {
+	private:
+
+	string fName; //format name
+	PlayerLL playerList;
+	int numPlayers;
+	PlayerNode* priorityPlayer;
+
+
+	public:
+	Format();
+	~Format();
+
+	void generateMatches();
+	void displayMatches();
+	void addPoints(string playerName);
+	void removePoints(string playerName);
+
+
+
+
 
 };
 
