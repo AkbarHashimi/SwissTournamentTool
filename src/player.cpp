@@ -11,3 +11,9 @@ Player::Player(string name)
 	points = 0;
 }
 
+void Player::addPoint()
+{
+
+}
+
+
