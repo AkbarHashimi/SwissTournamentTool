@@ -20,6 +20,7 @@ class Player
 {
 	private:
 	bool paired;
+	bool matchComplete;
 	string pName;
 	int points;
 	Web connectionList;
@@ -33,6 +34,9 @@ class Player
 	void unPair();
 	void addConnection(Player* addPlayer);
 	void removeConnection(Player* removePlayer);
+	void completeMatch();
+	void resetMatch();
+	void notifyPartner();
 
 
 
@@ -63,6 +67,7 @@ class Web
 	Web();
 	void addConnection(Player* addPlayer);
 	void removeConnection(Player* removePlayer);
+	void notifyPartner();
 	~Web();
 
 
