@@ -13,6 +13,50 @@ Player::Player(string name)
 
 void Player::addPoint()
 {
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << endl;
+
+	cout << "Player: " << pName << "has had their points increased" << endl;
+
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << endl;
+
+	points++;
+}
+
+void Player::removePoint()
+{
+	if (points == 0)
+	{
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+
+		cout << "Player already has 0 points, you can't remove more" << endl;
+
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+
+		return;
+
+	}
+
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << endl;
+
+	cout << "Player: " << pName << "has had their points decreased" << endl;
+
+	cout << endl;
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << endl;
+
+
+	points--;
+
 
 }
 
