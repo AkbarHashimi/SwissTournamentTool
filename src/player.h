@@ -66,6 +66,8 @@ class Player
 		void removeConnection(Player* removePlayer);
 		void notifyPartner();
 		bool findPair(Player* & foundPlayer);
+		void clearConnections();
+
 		~Web();
 
 
