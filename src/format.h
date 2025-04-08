@@ -39,6 +39,7 @@ class Format
 	void removePoints(string playerName);
 	void addPlayer(string playerName);
 	void removePlayer(string playerName);
+	void matchResult(string winnerName); //assumes partner is valid
 
 
 
