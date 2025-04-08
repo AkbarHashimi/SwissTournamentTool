@@ -39,6 +39,20 @@ struct PlayerLL
 
 class Player
 {
+	public:
+
+
+	Player(string name);
+	void addPoint();
+	void removePoint();
+	bool findPair(Player* & foundPlayer);
+	void pair();
+	void unPair();
+	void addConnection(Player* addPlayer);
+	void removeConnection(Player* removePlayer);
+	void notifyPartner();
+	string getName();
+
 	//Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
 	class Web
 	{
@@ -51,6 +65,7 @@ class Player
 		void addConnection(Player* addPlayer);
 		void removeConnection(Player* removePlayer);
 		void notifyPartner();
+		bool findPair(Player* & foundPlayer);
 		~Web();
 
 
@@ -58,22 +73,14 @@ class Player
 
 
 	private:
+
+
 	bool paired;
 	string pName;
 	int points;
 	Web connectionList;
 
-	public:
-	Player(string name);
-	void addPoint();
-	void removePoint();
-	bool findPair(Player* & foundPlayer);
-	void pair();
-	void unPair();
-	void addConnection(Player* addPlayer);
-	void removeConnection(Player* removePlayer);
-	void notifyPartner();
-	string getName();
+
 
 
 
@@ -83,22 +90,7 @@ class Player
 
 
 
-//Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
-class Web
-{
-	private:
-	PlayerLL connections;
-	PlayerNode* currentMatchup;
 
-	public:
-	Web();
-	void addConnection(Player* addPlayer);
-	void removeConnection(Player* removePlayer);
-	void notifyPartner();
-	~Web();
-
-
-};
 
 
 
