@@ -26,6 +26,7 @@ class Format
 	PlayerLL playerList;
 	int numPlayers;
 	PlayerNode* priorityPlayer;
+	PairList currentMatches;
 
 
 	public:
@@ -36,13 +37,37 @@ class Format
 	void displayMatches();
 	void addPoints(string playerName);
 	void removePoints(string playerName);
-
+	void addPlayer(string playerName);
+	void removePlayer(string playerName);
 
 
 
 
 };
 
+struct PairNode
+{
+	string p1Name;
+	string p2Name;
+
+	PairNode* next;
+};
+
+class PairList
+{
+	private:
+	PairNode* head;
+	PairNode* tail;
+
+
+	public:
+	PairList();
+	~PairList();
+
+
+	void addPair(string player1Name, string player2Name);
+	void clear();
+};
 
 
 #endif /* FORMAT_H_ */
