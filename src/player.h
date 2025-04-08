@@ -20,7 +20,6 @@ class Player
 {
 	private:
 	bool paired;
-	bool matchComplete;
 	string pName;
 	int points;
 	Web connectionList;
