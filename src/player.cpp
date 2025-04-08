@@ -60,6 +60,8 @@ void Player::removePoint()
 
 }
 
+//Web Class member functions
+
 Player::Web::Web()
 {
 	//initialize connections
@@ -106,6 +108,44 @@ Player::Web::~Web()
 		current = next;
 
 	}
+
+
+
+
+}
+
+void Player::Web::addConnection(Player* newPlayer)
+{
+
+	//create playerNode
+
+	PlayerNode* newPlayerNode = new PlayerNode;
+
+	newPlayerNode->next = nullptr;
+	newPlayerNode->playerPtr = newPlayer;
+
+
+
+
+	//check for empty list
+
+	if (connections.head == nullptr)
+	{
+		connections.head = newPlayerNode;
+		newPlayerNode->next = connections.head; //circular list
+
+
+		return;
+	}
+
+	//list is not empty
+
+	connections.tail->next = newPlayerNode;
+	newPlayerNode->next = connections.head; //circular list
+	connections.tail = newPlayerNode;
+
+
+	return;
 
 
 
