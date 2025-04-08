@@ -8,7 +8,18 @@
 #ifndef FORMAT_H_
 #define FORMAT_H_
 
+#include <string>
+using std::string;
 
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
+class Format
+{
+
+};
 
 
 
