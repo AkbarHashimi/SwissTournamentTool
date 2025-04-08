@@ -16,8 +16,47 @@ using std::string;
 using std::cout;
 using std::endl;
 
+
+//Lots of silly forward declare referencing
+class Web;
+struct PlayerLL;
+struct PlayerNode;
+class Player;
+
+//Desc: Node struct for linked lists of players
+struct PlayerNode
+{
+	Player* playerPtr;
+	PlayerNode* next;
+};
+
+//Desc: circular linked list of PlayerNodes representing Players in a format
+struct PlayerLL
+{
+	PlayerNode* head;
+	PlayerNode* tail;
+};
+
 class Player
 {
+	//Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
+	class Web
+	{
+		private:
+		PlayerLL connections;
+		PlayerNode* currentMatchup;
+
+		public:
+		Web();
+		void addConnection(Player* addPlayer);
+		void removeConnection(Player* removePlayer);
+		void notifyPartner();
+		~Web();
+
+
+	};
+
+
 	private:
 	bool paired;
 	string pName;
@@ -38,21 +77,11 @@ class Player
 
 
 
+
+
 };
 
-//Desc: Node struct for linked lists of players
-struct PlayerNode
-{
-	Player* playerPtr;
-	PlayerNode* next;
-};
 
-//Desc: circular linked list of PlayerNodes representing Players in a format
-struct PlayerLL
-{
-	PlayerNode* head;
-	PlayerNode* tail;
-};
 
 //Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
 class Web
