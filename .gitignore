@@ -6,3 +6,4 @@
 
 #track src folder
 !src/**
+/Debug/
