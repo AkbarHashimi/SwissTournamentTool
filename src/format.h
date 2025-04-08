@@ -67,6 +67,7 @@ class PairList
 
 	void addPair(string player1Name, string player2Name);
 	void clear();
+	void display();
 };
 
 
