@@ -8,7 +8,8 @@ int main()
 	string name1 = "Akbar";
 
 	Player testPlayer(name1);
-	testPlayer.removePoint(); //test removing a point
+	testPlayer.pair();
+	testPlayer.unPair();
 
 	cout << "program end" << endl;
 
