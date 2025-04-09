@@ -28,7 +28,7 @@ int main()
 	testPlayer.addConnection(&testPlayer3);
 	testPlayer.addConnection(&testPlayer4);
 
-	testPlayer.removeConnection(&testPlayer3); // case - remove middle item in list
+	testPlayer.removeConnection(&testPlayer4); // case - remove last item in list
 
 	testPlayer2.addConnection(&testPlayer);
 	testPlayer2.addConnection(&testPlayer3);
