@@ -171,7 +171,7 @@ void Player::Web::addConnection(Player* newPlayer)
 	{
 		connections.head = newPlayerNode;
 		newPlayerNode->next = connections.head; //circular list
-
+		connections.tail = newPlayerNode;
 
 		return;
 	}
