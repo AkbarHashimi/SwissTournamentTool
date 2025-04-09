@@ -176,9 +176,104 @@ void Player::Web::removeConnection(Player* removePlayer)
 
 	//search for item to remove, if not found - do nothing
 
+	bool found = false;
+
+	//1. Find connection if possible
+
+	/*
+		Check the Beginning
+
+
+	*/
+
+	PlayerNode* current = connections.head;
+	PlayerNode* prev = nullptr;
+
+	//remember linked list is circular
+
+	//make comparison btwn removePlayer and current Nodes pointer
+
+	if (current->playerPtr == removePlayer) //Player found
+	{
+
+		//remove node
+
+
+		if (connections.head == connections.tail) //only 1 connection
+		{
+
+			connections.head = nullptr;
+			connections.tail = nullptr;
+		}
+		else
+		{
+			connections.head = current->next;
+			connections.tail->next = connections.head;
+
+		}
+
+		delete current;
+
+		return;
+
+	}
+
+	prev = current;
+	current= current->next;
+
+
+	while (!found && current != connections.head) //not found or we haven't looped back to beginning
+	{
+
+
+		if (current->playerPtr == removePlayer)
+		{
+			found = true;
+		}
+		else //if you didn't find the player, don't change the pointer
+		{
+			prev = current;
+			current= current->next;
+		}
+
+	}
 
 
 
+	//Debug
+
+	if (found)
+	{
+		//check end
+
+		if (current == connections.tail)
+		{
+			prev->next = connections.head; //prev is the new tail
+			connections.tail = prev;
+
+		}
+		else //do middle
+		{
+			prev->next = current->next;
+		}
+
+		delete current;
+
+
+
+	}
+	else
+	{
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+
+		cout << "Player: " << removePlayer->getName() << " not found" << endl;
+
+		cout << endl;
+		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << endl;
+	}
 
 	return;
 }
