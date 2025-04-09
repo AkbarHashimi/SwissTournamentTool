@@ -60,6 +60,21 @@ void Player::removePoint()
 
 }
 
+void Player::pair()
+{
+	paired = true;
+}
+
+void Player::unPair()
+{
+	paired = false;
+}
+
+bool Player::getPair()
+{
+	return paired;
+}
+
 //Web Class member functions
 
 Player::Web::Web()
