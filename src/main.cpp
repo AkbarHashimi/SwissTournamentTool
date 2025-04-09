@@ -58,6 +58,42 @@ int main()
 		testPlayer.pair();
 	}
 
+	found = testPlayer.findPair(temp);
+
+	if (found)
+	{
+		cout << "match was found" << endl;
+
+		//mark both
+
+		testPlayer.pair();
+		temp->pair();
+	}
+	else
+	{
+
+		cout << "match was not found" << endl;
+		testPlayer.pair();
+	}
+
+	found = testPlayer.findPair(temp);
+
+	if (found)
+	{
+		cout << "match was found" << endl;
+
+		//mark both
+
+		testPlayer.pair();
+		temp->pair();
+	}
+	else
+	{
+
+		cout << "match was not found" << endl;
+		testPlayer.pair();
+	}
+
 	cout << "program end" << endl;
 
 
