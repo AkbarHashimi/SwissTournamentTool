@@ -23,6 +23,35 @@ using std::endl;
 	is reset to head of playerlist.
 */
 
+struct PairNode
+{
+	string p1Name;
+	string p2Name;
+
+	bool complete;
+
+	PairNode* next;
+};
+
+class PairList
+{
+	private:
+	PairNode* head;
+	PairNode* tail;
+
+
+	public:
+	PairList();
+	~PairList();
+
+
+	void addPair(string player1Name, string player2Name);
+	void matchResult(string winnerName);
+	void clear();
+	void display();
+};
+
+
 class Format
 {
 	private:
@@ -52,33 +81,7 @@ class Format
 
 };
 
-struct PairNode
-{
-	string p1Name;
-	string p2Name;
 
-	bool complete;
-
-	PairNode* next;
-};
-
-class PairList
-{
-	private:
-	PairNode* head;
-	PairNode* tail;
-
-
-	public:
-	PairList();
-	~PairList();
-
-
-	void addPair(string player1Name, string player2Name);
-	void matchResult(string winnerName);
-	void clear();
-	void display();
-};
 
 
 #endif /* FORMAT_H_ */
