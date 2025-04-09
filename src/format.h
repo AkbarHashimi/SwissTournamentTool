@@ -64,7 +64,7 @@ class Format
 
 
 	public:
-	Format();
+	Format(string name);
 	~Format();
 
 	void generateMatches();
