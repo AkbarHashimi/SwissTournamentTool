@@ -54,4 +54,28 @@ Format::~Format()
 
 }
 
+PairList::PairList()
+{
+	head = nullptr;
+	tail = nullptr;
+}
 
+
+PairList::~PairList()
+{
+
+
+	PairNode* current = nullptr;
+	PairNode* next = nullptr;
+
+
+	current = head;
+
+	while (current != nullptr)
+	{
+		next = current->next;
+		delete current;
+		current = next;
+
+	}
+}
