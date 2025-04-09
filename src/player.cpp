@@ -60,6 +60,11 @@ void Player::removePoint()
 
 }
 
+bool Player::findPair(Player* & foundPlayer)
+{
+	connectionList.findPair(foundPlayer);
+}
+
 void Player::pair()
 {
 	paired = true;
