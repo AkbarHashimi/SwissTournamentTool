@@ -7,9 +7,14 @@ int main()
 
 	string name1 = "Akbar";
 
+	string getName = "";
+	bool getBool;
+
 	Player testPlayer(name1);
 	testPlayer.pair();
-	testPlayer.unPair();
+	getName = testPlayer.getName();
+	getBool = testPlayer.getPair();
+
 
 	cout << "program end" << endl;
 
