@@ -26,9 +26,9 @@ int main()
 
 	testPlayer.addConnection(&testPlayer2);
 	testPlayer.addConnection(&testPlayer3);
+	testPlayer.addConnection(&testPlayer4);
 
-	testPlayer.removeConnection(nullptr);//test for unfindable player
-	testPlayer.removeConnection(&testPlayer4);//test for unfindable player
+	testPlayer.removeConnection(&testPlayer2); // case - remove first item in list
 
 	testPlayer2.addConnection(&testPlayer);
 	testPlayer2.addConnection(&testPlayer3);
