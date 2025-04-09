@@ -50,7 +50,6 @@ class Player
 	void unPair();
 	void addConnection(Player* addPlayer);
 	void removeConnection(Player* removePlayer);
-	void notifyPartner();
 	string getName();
 
 	//Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
@@ -64,7 +63,6 @@ class Player
 		Web();
 		void addConnection(Player* newPlayer);
 		void removeConnection(Player* removePlayer);
-		void notifyPartner();
 		bool findPair(Player* & foundPlayer);
 		void clearConnections();
 
