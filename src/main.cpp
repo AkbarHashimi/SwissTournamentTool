@@ -1,11 +1,16 @@
 
-#include <iostream>
-
-using std::cout;
-using std::endl;
+#include "format.h"
+#include "player.h"
 
 int main()
 {
-	cout << "hello World" << endl;
+
+	string name1 = "Akbar";
+
+	Player testPlayer(name1);
+
+	cout << "program end" << endl;
+
+
 	return 0;
 }
