@@ -288,7 +288,8 @@ void Player::Web::removeConnection(Player* removePlayer)
 		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		cout << endl;
 
-		cout << "Player: " << removePlayer->getName() << " not found" << endl;
+
+		cout << "Player not found" << endl;
 
 		cout << endl;
 		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
