@@ -18,6 +18,11 @@ using std::endl;
 
 #include "player.h"
 
+/*
+	NOTES: Remember that when deleting, make sure that the priorityPlayer
+	is reset to head of playerlist.
+*/
+
 class Format
 {
 	private:
