@@ -154,6 +154,12 @@ void Player::Web::addConnection(Player* newPlayer)
 
 }
 
+
+/*
+ * NOTE: when deleting node, make current matchup point to previous matchup.
+ * This is because during findPair() currentMatchup always adjusts to the next node before processing
+*/
+
 void Player::Web::removeConnection(Player* removePlayer)
 {
 	//check for empty list
@@ -204,11 +210,17 @@ void Player::Web::removeConnection(Player* removePlayer)
 
 			connections.head = nullptr;
 			connections.tail = nullptr;
+			currentMatchup = nullptr;
 		}
 		else
 		{
 			connections.head = current->next;
 			connections.tail->next = connections.head;
+
+			if (current == currentMatchup)
+			{
+				currentMatchup = connections.tail; //set to "previous matchup" in this case the last element in list
+			}
 
 		}
 
@@ -244,12 +256,20 @@ void Player::Web::removeConnection(Player* removePlayer)
 
 	if (found)
 	{
+		// if we are going to delete the node that currentMatchup points to, then we need to adjust the pointer
+		if (currentMatchup == current)
+		{
+			currentMatchup = prev;
+		}
+
 		//check end
 
 		if (current == connections.tail)
 		{
 			prev->next = connections.head; //prev is the new tail
 			connections.tail = prev;
+
+
 
 		}
 		else //do middle
