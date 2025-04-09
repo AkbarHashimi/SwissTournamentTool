@@ -63,6 +63,11 @@ PairList::PairList()
 
 PairList::~PairList()
 {
+	clear();
+}
+
+void PairList::clear()
+{
 
 
 	PairNode* current = nullptr;
