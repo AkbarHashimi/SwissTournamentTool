@@ -85,6 +85,11 @@ void Player::removeConnection(Player* removePlayer)
 	connectionList.removeConnection(removePlayer);
 }
 
+string Player::getName()
+{
+	return pName;
+}
+
 bool Player::getPair()
 {
 	return paired;
