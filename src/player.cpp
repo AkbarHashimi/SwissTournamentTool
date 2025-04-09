@@ -299,3 +299,69 @@ void Player::Web::removeConnection(Player* removePlayer)
 	return;
 }
 
+/*
+ *
+ * This function returns a boolean 'found' indicating whether or not a pair was found when doing matchups
+ * the parameter 'foundPlayer' is passed by referenced and is assumed to be null when passed in.
+ * 'foundPlayer' is used as a "return" value for a pointer of which player is to be added to the PairList, assuming we found a pair.
+ * This function algo is this:
+ * 1. if currentMatchup is null: set it to the head of the connection list
+ * 2. otherwise, adjust currentMatchup to next element in the connection list
+ * 3. loop through connection list, starting at the currentMatchup until either:
+ * 		a. you find a node that is not paired
+ * 			- set 'foundPlayer' to the address of the player to be paired
+ * 			- set 'found' to true
+ * 		b. looped back to currentMatchup again
+ *
+ * 	DONT CALL THIS FUNCTION when number of players is less than 2!!!!
+*/
+bool Player::Web::findPair(Player* & foundPlayer)
+{
+	bool found = false;
+	bool paired = false;
+	PlayerNode* tracker = nullptr;
+
+	if (currentMatchup == nullptr)
+	{
+
+		currentMatchup = connections.head;
+
+	}
+	else
+	{
+		currentMatchup = currentMatchup->next; //adjust it forward
+	}
+
+	//Process first time
+	// is currentMatchup a valid partner or connection to use?
+
+	paired = currentMatchup->playerPtr->getPair();
+
+	if (!paired) // check first element
+	{
+		foundPlayer = currentMatchup->playerPtr;
+		found = true;
+		return found;
+	}
+
+	tracker = currentMatchup->next; //iterator
+
+	while (tracker != currentMatchup)//loop until you get back to where you started
+	{
+		paired = tracker->playerPtr->getPair();
+
+		if (!paired)
+		{
+			currentMatchup = tracker;
+			foundPlayer = currentMatchup->playerPtr;
+			found = true;
+			return found;
+		}
+		tracker = tracker->next;
+
+	}
+
+	return found;
+
+}
+
