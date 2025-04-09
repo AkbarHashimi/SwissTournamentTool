@@ -26,11 +26,7 @@ int main()
 
 	testPlayer.addConnection(&testPlayer2);
 	testPlayer.addConnection(&testPlayer3);
-	testPlayer.addConnection(&testPlayer4);
 
-	testPlayer.removeConnection(&testPlayer2); // case - remove last item in list
-	testPlayer.removeConnection(&testPlayer3); // case - remove last item in list
-	testPlayer.removeConnection(&testPlayer4); // case - remove last item in list
 
 
 	testPlayer2.addConnection(&testPlayer);
@@ -39,6 +35,28 @@ int main()
 	testPlayer3.addConnection(&testPlayer);
 	testPlayer3.addConnection(&testPlayer2);
 
+	//treat testPlayer as priority
+
+	Player* temp = nullptr;
+	bool found = false;
+
+	found = testPlayer.findPair(temp);
+
+	if (found)
+	{
+		cout << "match was found" << endl;
+
+		//mark both
+
+		testPlayer.pair();
+		temp->pair();
+	}
+	else
+	{
+
+		cout << "match was not found" << endl;
+		testPlayer.pair();
+	}
 
 	cout << "program end" << endl;
 
