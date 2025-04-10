@@ -112,3 +112,70 @@ void PairList::addPair(string player1Name, string player2Name)
 
 
 }
+
+void PairList::matchResult(string winnerName)
+{
+
+
+	//search for winner
+	//set their flag to true
+
+	if (head == nullptr)
+	{
+		cout << "no players in player list, failed to search for match result" << endl;
+		return;
+	}
+
+	PairNode* tracker = head;
+
+	while (tracker != nullptr)
+	{
+
+		if (tracker->p1Name == winnerName || tracker->p2Name == winnerName)
+		{
+			tracker->complete = true;
+			return;
+		}
+
+		tracker = tracker->next;
+	}
+
+
+
+}
+
+void PairList::display()
+{
+
+	if (head == nullptr)
+	{
+		cout << "no pairs have been made" << endl;
+		return;
+	}
+
+	cout << "------------------------------------" << endl;
+	cout << " " << endl;
+
+	PairNode* tracker = head;
+
+	while (tracker != nullptr)
+	{
+		cout << tracker->p1Name << " VS " << tracker->p2Name << " - ";
+		if (tracker->complete)
+		{
+			cout << "complete";
+		}
+		else
+		{
+			cout << "incomplete";
+		}
+
+		cout << endl;
+	}
+
+
+	cout << "------------------------------------" << endl;
+	cout << " " << endl;
+
+
+}
