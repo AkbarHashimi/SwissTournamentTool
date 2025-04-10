@@ -1,6 +1,9 @@
 
 #include "format.h"
 
+
+//Format class
+
 Format::Format(string name)
 {
 	fName = name;
@@ -54,6 +57,8 @@ Format::~Format()
 
 }
 
+
+//PairList class
 PairList::PairList()
 {
 	head = nullptr;
@@ -83,4 +88,27 @@ void PairList::clear()
 		current = next;
 
 	}
+}
+
+void PairList::addPair(string player1Name, string player2Name)
+{
+	PairNode* temp = new PairNode;
+	temp->complete = false;
+	temp->p1Name = player1Name;
+	temp->p2Name = player2Name;
+	temp->next = nullptr;
+
+	//check empty
+
+	if (head == nullptr)
+	{
+		head = temp;
+		tail = temp;
+		return;
+
+	}
+
+	tail->next = temp;
+
+
 }
