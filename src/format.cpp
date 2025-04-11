@@ -78,6 +78,9 @@ void Format::addPlayer(string playerName)
 		playerList.head = newPlayerNode;
 		playerList.tail = playerList.head;
 		newPlayerNode->next = playerList.head;
+
+		numPlayers++;
+
 		return;
 
 	}
@@ -110,10 +113,129 @@ void Format::addPlayer(string playerName)
 	playerList.tail = newPlayerNode;
 	newPlayerNode->next = playerList.head;
 
+	numPlayers++;
+
+	return;
+
+
+
 
 }
 
+//Removing player should only be done between matches
+// Does not affect current matchup pairs
+//
+void Format::removePlayer(string playerName)
+{
+	//Find player
+	//Delete the following:
+	// Connections between itself and all nodes
+	// Player object
+	// PlayerNode object
 
+	//Check for empty
+
+	if (playerList.head == nullptr)
+	{
+		cout << "no players to remove" << endl;
+
+		return;
+	}
+
+	//list is not empty
+	//find the player we are looking for and establish a pointer to it.
+
+
+	Player* foundPlayer = nullptr;
+	bool playerDelFound = false;
+
+	PlayerNode* prev = nullptr;
+	PlayerNode* tracker = playerList.head;
+
+	//handle 1 node case
+
+	if (tracker->playerPtr->getName() == playerName) //found player at 1st node
+	{
+		if (playerList.head == playerList.tail)  //case that there is only 1 node
+		{
+			//free the node and the player object
+
+			delete tracker->playerPtr;
+			delete tracker;
+
+
+			playerList.head = nullptr;
+			playerList.tail = nullptr;
+
+			return;
+		}
+
+		playerDelFound = true;
+		foundPlayer = tracker->playerPtr;
+
+	}
+
+
+	if (!playerDelFound) //if not found at first node
+	{
+		//more than 1 node at this point
+		prev = tracker;
+		tracker = tracker->next;
+
+		while (tracker != playerList.head and !playerDelFound) //go through list until you find the result
+		{
+			if (tracker->playerPtr->getName() == playerName)
+			{
+				foundPlayer = tracker->playerPtr;
+				playerDelFound = true;
+			}
+			else
+			{
+				prev = tracker;
+				tracker = tracker->next; //if we dont find it here, move on
+			}
+		}
+
+		if (foundPlayer == nullptr)
+		{
+			cout << "this player: " << playerName << " was not found" << endl;
+			return;
+		}
+	}
+
+
+	//now that we found the player we must first delete the other connections it had with other nodes
+	//tracker still points at found player
+
+	PlayerNode* partnerTracker = tracker->next;
+
+	while (partnerTracker != tracker)
+	{
+		partnerTracker->playerPtr->removeConnection(foundPlayer); //remove all connections
+		partnerTracker = partnerTracker->next;
+	}
+
+	//all connections are removed
+	//time to free player itself and then adjust linked list
+
+	prev->next = tracker->next;
+
+	if (tracker == playerList.tail)
+	{
+		playerList.tail = prev;
+	}
+
+	//free player inside and object
+
+	delete tracker->playerPtr;
+	delete tracker;
+
+
+	//reset priority at end
+
+	priorityPlayer = playerList.head;
+
+}
 
 //PairList class
 PairList::PairList()
