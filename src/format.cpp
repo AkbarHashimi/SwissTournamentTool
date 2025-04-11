@@ -88,6 +88,10 @@ void PairList::clear()
 		current = next;
 
 	}
+
+	head = nullptr;
+	tail = nullptr;
+
 }
 
 void PairList::addPair(string player1Name, string player2Name)
@@ -109,6 +113,7 @@ void PairList::addPair(string player1Name, string player2Name)
 	}
 
 	tail->next = temp;
+	tail = temp;
 
 
 }
@@ -154,7 +159,10 @@ void PairList::display()
 	}
 
 	cout << "------------------------------------" << endl;
+	cout << "Current Matchups" << endl;
 	cout << " " << endl;
+
+
 
 	PairNode* tracker = head;
 
@@ -171,6 +179,8 @@ void PairList::display()
 		}
 
 		cout << endl;
+
+		tracker = tracker->next;
 	}
 
 
