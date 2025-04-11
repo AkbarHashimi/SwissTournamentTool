@@ -52,6 +52,7 @@ class Player
 	void removeConnection(Player* removePlayer);
 	string getName();
 	bool getPair();
+	int getPoints();
 
 	//Desc: A class that contains a linked list of PlayerNode’s and the current matchup.
 	class Web

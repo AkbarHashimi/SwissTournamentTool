@@ -24,6 +24,7 @@ Format::~Format()
 
 	if (playerList.head == nullptr)
 	{
+		/*
 		cout << endl;
 		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		cout << endl;
@@ -34,7 +35,7 @@ Format::~Format()
 		cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		cout << endl;
 
-
+		*/
 		return;
 	}
 
@@ -427,7 +428,38 @@ void Format::displayMatches()
 }
 
 
+void Format::displayPlayerStats()
+{
+	if (numPlayers == 0)
+	{
+		cout << "no players .. no stats" << endl;
+		return;
+	}
 
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "Player Points" << endl;
+
+	cout << " " << endl;
+
+	PlayerNode* tracker = playerList.head;
+
+	cout << tracker->playerPtr->getName() << " points: " << tracker->playerPtr->getPoints() << endl;
+
+	tracker = tracker->next;
+
+	while(tracker != playerList.head)
+	{
+		cout << tracker->playerPtr->getName() << " points: " << tracker->playerPtr->getPoints() << endl;
+		tracker = tracker->next;
+	}
+
+
+
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+	cout << " " << endl;
+
+}
 
 
 //PairList class

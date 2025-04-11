@@ -11,6 +11,11 @@ Player::Player(string name)
 	points = 0;
 }
 
+int Player::getPoints()
+{
+	return points;
+}
+
 void Player::addPoint()
 {
 	cout << endl;
