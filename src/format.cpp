@@ -252,7 +252,7 @@ void Format::generateMatches()
 		priorityPlayer = playerList.head; //init
 	}
 
-
+	currentMatches.clear();
 
 	//loop through each player and unpair them
 
@@ -305,27 +305,32 @@ void Format::generateMatches()
 
 	while (tracker != priorityPlayer)
 	{
-		foundPartner = tracker->playerPtr->findPair(foundParterPlayer); //attempt to find partner
-
-		if (foundPartner)
+		if (!tracker->playerPtr->getPair()) //not paired
 		{
-			//pair both
-			tracker->playerPtr->pair();
-			foundParterPlayer->pair();
+			foundPartner = tracker->playerPtr->findPair(foundParterPlayer); //attempt to find partner
 
-			//add to pair list
+			if (foundPartner)
+			{
+				//pair both
+				tracker->playerPtr->pair();
+				foundParterPlayer->pair();
 
-			currentMatches.addPair(tracker->playerPtr->getName(), foundParterPlayer->getName() );
+				//add to pair list
 
+				currentMatches.addPair(tracker->playerPtr->getName(), foundParterPlayer->getName() );
+
+			}
+			else // all ALONE!
+			{
+				addPoints(tracker->playerPtr->getName()); //free point
+				currentMatches.addPair(tracker->playerPtr->getName(), "No Player" ); //creates a bracket with no player
+				currentMatches.matchResult(tracker->playerPtr->getName()); //sets match as done
+				tracker->playerPtr->pair(); //set paired
+
+			}
 		}
-		else // all ALONE!
-		{
-			addPoints(tracker->playerPtr->getName()); //free point
-			currentMatches.addPair(tracker->playerPtr->getName(), "No Player" ); //creates a bracket with no player
-			currentMatches.matchResult(tracker->playerPtr->getName()); //sets match as done
-			tracker->playerPtr->pair(); //set paired
 
-		}
+
 
 		tracker = tracker->next;
 	}
@@ -412,7 +417,45 @@ void Format::addPoints(string playerName)
 
 void Format::matchResult(string winnerName)
 {
-	currentMatches.matchResult(winnerName);
+	//look for winner and add their points
+
+	if (numPlayers == 0)
+	{
+		cout << "no players silly, no match result inputs are possible" << endl;
+		return;
+	}
+
+	PlayerNode* tracker = playerList.head;
+	bool found = false;
+
+	if (tracker->playerPtr->getName() == winnerName)
+	{
+		tracker->playerPtr->addPoint();
+		found = true;
+	}
+
+	tracker = tracker->next;
+
+	while (!found && tracker != playerList.head)
+	{
+		if (tracker->playerPtr->getName() == winnerName)
+		{
+			tracker->playerPtr->addPoint();
+			found = true;
+		}
+		tracker = tracker->next;
+	}
+
+	if (found)
+	{
+		currentMatches.matchResult(winnerName);
+	}
+	else
+	{
+		cout << "player doesn't exist" << endl;
+	}
+
+
 }
 
 
