@@ -5,6 +5,7 @@
 int main()
 {
 
+	/*
 	string name1 = "Akbar";
 	string name2 = "NotAkbar";
 	string name3 = "serious";
@@ -35,6 +36,11 @@ int main()
 	testPlayer3.addConnection(&testPlayer);
 	testPlayer3.addConnection(&testPlayer2);
 
+	*/
+
+	PairList testPair;
+
+	testPair.display(); //display empty
 
 	cout << "program end" << endl;
 
