@@ -40,7 +40,13 @@ int main()
 
 	PairList testPair;
 
-	testPair.display(); //display empty
+	testPair.addPair("Akbar","Riley");
+	testPair.addPair("Jake","Finn");
+
+	testPair.clear();
+
+	testPair.display();
+
 
 	cout << "program end" << endl;
 

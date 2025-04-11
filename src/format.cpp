@@ -55,6 +55,10 @@ Format::~Format()
 
 	}
 
+	playerList.head = nullptr;
+	playerList.tail = nullptr;
+
+
 }
 
 
