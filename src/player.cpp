@@ -150,6 +150,9 @@ void Player::Web::clearConnections()
 		current = next;
 
 	}
+
+	connections.head = nullptr;
+	connections.tail = nullptr;
 }
 
 void Player::Web::addConnection(Player* newPlayer)
@@ -242,6 +245,7 @@ void Player::Web::removeConnection(Player* removePlayer)
 
 		if (connections.head == connections.tail) //only 1 connection
 		{
+			delete connections.head;
 
 			connections.head = nullptr;
 			connections.tail = nullptr;
