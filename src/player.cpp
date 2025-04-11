@@ -245,7 +245,6 @@ void Player::Web::removeConnection(Player* removePlayer)
 
 		if (connections.head == connections.tail) //only 1 connection
 		{
-			delete connections.head;
 
 			connections.head = nullptr;
 			connections.tail = nullptr;
@@ -270,7 +269,7 @@ void Player::Web::removeConnection(Player* removePlayer)
 	}
 
 	prev = current;
-	current= current->next;
+	current = current->next;
 
 
 	while (!found && current != connections.head) //not found or we haven't looped back to beginning
