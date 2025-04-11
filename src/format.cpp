@@ -237,6 +237,199 @@ void Format::removePlayer(string playerName)
 
 }
 
+//This is a facade to generate matchups
+void Format::generateMatches()
+{
+	if (numPlayers < 2)
+	{
+		cout << "not enough players for a match lol" << endl;
+		return;
+	}
+
+	if (priorityPlayer == nullptr)
+	{
+		priorityPlayer = playerList.head; //init
+	}
+
+
+
+	//loop through each player and unpair them
+
+	PlayerNode* tracker = playerList.head;
+
+	tracker->playerPtr->unPair();
+
+	tracker = tracker->next;
+
+	while (tracker != playerList.head)
+	{
+		tracker->playerPtr->unPair();
+		tracker = tracker->next;
+	}
+
+	//loop through each player and start with priority
+
+	tracker = priorityPlayer;
+
+
+	//check for pair
+
+	bool foundPartner = false;
+	Player* foundParterPlayer = nullptr;
+
+	foundPartner = tracker->playerPtr->findPair(foundParterPlayer); //attempt to find partner
+
+	if (foundPartner)
+	{
+		//pair both
+		tracker->playerPtr->pair();
+		foundParterPlayer->pair();
+
+		//add to pair list
+
+		currentMatches.addPair(tracker->playerPtr->getName(), foundParterPlayer->getName() );
+
+	}
+	else // all ALONE!
+	{
+		addPoints(tracker->playerPtr->getName()); //free point
+		currentMatches.addPair(tracker->playerPtr->getName(), "No Player" ); //creates a bracket with no player
+		currentMatches.matchResult(tracker->playerPtr->getName()); //sets match as done
+		tracker->playerPtr->pair(); //set paired
+
+	}
+
+
+	tracker = tracker->next;
+
+	while (tracker != priorityPlayer)
+	{
+		foundPartner = tracker->playerPtr->findPair(foundParterPlayer); //attempt to find partner
+
+		if (foundPartner)
+		{
+			//pair both
+			tracker->playerPtr->pair();
+			foundParterPlayer->pair();
+
+			//add to pair list
+
+			currentMatches.addPair(tracker->playerPtr->getName(), foundParterPlayer->getName() );
+
+		}
+		else // all ALONE!
+		{
+			addPoints(tracker->playerPtr->getName()); //free point
+			currentMatches.addPair(tracker->playerPtr->getName(), "No Player" ); //creates a bracket with no player
+			currentMatches.matchResult(tracker->playerPtr->getName()); //sets match as done
+			tracker->playerPtr->pair(); //set paired
+
+		}
+
+		tracker = tracker->next;
+	}
+
+	cout << "" << endl;
+
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+	cout << "Matches Generated" << endl;
+
+	cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
+	cout << "" << endl;
+
+
+}
+
+void Format::removePoints(string playerName)
+{
+	if (numPlayers == 0)
+	{
+		cout << "no players exist, no points removed" << endl;
+		return;
+	}
+
+	PlayerNode* tracker = playerList.head;
+
+	if (tracker->playerPtr->getName() == playerName)
+	{
+		tracker->playerPtr->removePoint();
+		return;
+	}
+
+	tracker = tracker->next;
+
+	while (tracker != playerList.head)
+	{
+		if (tracker->playerPtr->getName() == playerName)
+		{
+			tracker->playerPtr->removePoint();
+			return;
+		}
+
+		tracker = tracker->next;
+	}
+
+	cout << "Player: " << playerName << " not found" << endl;
+
+}
+
+
+void Format::addPoints(string playerName)
+{
+	if (numPlayers == 0)
+	{
+		cout << "no players exist, no points added" << endl;
+		return;
+	}
+
+	PlayerNode* tracker = playerList.head;
+
+	if (tracker->playerPtr->getName() == playerName)
+	{
+		tracker->playerPtr->addPoint();
+		return;
+	}
+
+	tracker = tracker->next;
+
+	while (tracker != playerList.head)
+	{
+		if (tracker->playerPtr->getName() == playerName)
+		{
+			tracker->playerPtr->addPoint();
+			return;
+		}
+
+		tracker = tracker->next;
+	}
+
+	cout << "Player: " << playerName << " not found" << endl;
+
+}
+
+void Format::matchResult(string winnerName)
+{
+	currentMatches.matchResult(winnerName);
+}
+
+
+string Format::getName()
+{
+	return fName;
+}
+
+
+void Format::displayMatches()
+{
+	currentMatches.display();
+}
+
+
+
+
+
 //PairList class
 PairList::PairList()
 {
