@@ -61,6 +61,59 @@ Format::~Format()
 
 }
 
+void Format::addPlayer(string playerName)
+{
+	//Create player object
+	Player* newPlayer = new Player(playerName);
+
+	PlayerNode* newPlayerNode = new PlayerNode;
+
+	newPlayerNode->playerPtr = newPlayer;
+	newPlayerNode->next = nullptr;
+
+	//check if list is empty
+
+	if (playerList.head == nullptr)
+	{
+		playerList.head = newPlayerNode;
+		playerList.tail = playerList.head;
+		newPlayerNode->next = playerList.head;
+		return;
+
+	}
+
+	//from here on - handle a non empty list
+	//In this scenario you must first:
+	//Loop through each existing player in the playerlist:
+	// - add connection to them from newplayer
+	// - add connection to newplayer from them
+	// - append the new node at the end of list using tail
+
+	PlayerNode* tracker = playerList.head;
+
+	tracker->playerPtr->addConnection(newPlayer); 	// - add connection to them from newplayer
+	newPlayer->addConnection(tracker->playerPtr);	// - add connection to newplayer from them
+
+	tracker = tracker->next; //change tracker
+
+	while (tracker != playerList.head)
+	{
+		tracker->playerPtr->addConnection(newPlayer); 	// - add connection to them from newplayer
+		newPlayer->addConnection(tracker->playerPtr);	// - add connection to newplayer from them
+
+		tracker = tracker->next;
+	}
+
+	// - append the new node at the end of list using tail
+
+	playerList.tail->next = newPlayerNode;
+	playerList.tail = newPlayerNode;
+	newPlayerNode->next = playerList.head;
+
+
+}
+
+
 
 //PairList class
 PairList::PairList()
